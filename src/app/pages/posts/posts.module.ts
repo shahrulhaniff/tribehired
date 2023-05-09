@@ -1,3 +1,4 @@
+import { PostsComponent } from './posts.component';
 import { PostsRoutingModule } from './posts-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,7 +6,9 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PostsComponent
+  ],
   imports: [
     CommonModule,
     PostsRoutingModule

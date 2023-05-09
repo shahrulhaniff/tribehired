@@ -27,7 +27,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: 'posts' },
+  { path: 'test', redirectTo: 'posts' },
   { path: '**', redirectTo: 'posts' }
 ];
 
