@@ -65,7 +65,17 @@ export class PostsComponent implements OnInit {
     console.log(`Selected option is: ${this.selectedOption}`);
   }
 
-  search(searchKey:any) {
+  async search(searchKey:any) {
+
+    // if(this.selectedOption=='name') { this.comments =  this.comments.filter((item: { name: any; }) => item.name == searchKey ); }
+    if(this.selectedOption=='name') { this.comments = await this.comments.filter((item: { name: any; }) => item.name.includes(searchKey) ); }
+    if(this.selectedOption=='email') { this.comments = await  this.comments.filter((item: { email: any; }) => item.email == searchKey ); }
+    if(this.selectedOption=='body') { this.comments = await this.comments.filter((item: { body: any; }) => item.body.includes(searchKey) ); }
+
+
     console.log(searchKey);
+    console.log(this.comments);
+    console.log(this.selectedOption);
+
   }
 }
