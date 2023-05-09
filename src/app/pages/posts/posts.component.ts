@@ -1,3 +1,4 @@
+/** copyright - this is shahrulhaniff codes: i'll try to make it as simple as possible */
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
 import { lastValueFrom } from 'rxjs';
@@ -38,10 +39,9 @@ export class PostsComponent implements OnInit {
     const params = this.route.snapshot.params['id'];
     // debugger
     this.debugparam = params;
-    this.fetchData(params);
-
-    console.log(this.options);
-    console.log(this.selectedOption);
+    this.fetchData(params); // note : there are various ways to fetch api like .subscribe, .toPromise, firstVal, etc.. i choose lastValueFrom
+    // console.log(this.options);
+    // console.log(this.selectedOption);
   }
 
   async fetchData( id: any) {
@@ -70,25 +70,20 @@ export class PostsComponent implements OnInit {
   }
 
   async search(searchKey:any) {
-
-
     // debugger
     // console.log(this.debugparam);
     // console.table(this.comments);
     // this.getComments(this.debugparam);
     let commentApi = this.api.sitelink + 'comments?postId=' + this.debugparam;
     this.comments = await lastValueFrom(this.api.get(commentApi));
-
-
     // if(this.selectedOption=='name') { this.comments =  this.comments.filter((item: { name: any; }) => item.name == searchKey ); }
     if(this.selectedOption=='name') { this.comments = await this.comments.filter((item: { name: any; }) => item.name.includes(searchKey) ); }
     if(this.selectedOption=='email') { this.comments = await  this.comments.filter((item: { email: any; }) => item.email == searchKey ); }
     if(this.selectedOption=='body') { this.comments = await this.comments.filter((item: { body: any; }) => item.body.includes(searchKey) ); }
 
-
-    console.log(searchKey);
+    // debugger
+    // console.log(searchKey);
     console.log(this.comments);
-    console.log(this.selectedOption);
-
+    // console.log(this.selectedOption);
   }
 }
