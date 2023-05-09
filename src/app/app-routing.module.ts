@@ -10,6 +10,11 @@ const routes: Routes = [
     import("./pages/posts/posts.module").then((m) => m.PostsModule),
   },
   {
+    path: "posts/:id",
+    loadChildren: () =>
+    import("./pages/posts/posts.module").then((m) => m.PostsModule),
+  },
+  {
     path: 'posts-parent',
     component: PostsComponent,
     // canActivate: [AuthGuardService],
