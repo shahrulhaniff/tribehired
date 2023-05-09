@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tribehired"
+    }
+  },
+  "defaultProject": "tribehired",
+  "cli": {
+    "analytics": "e5e3f7fb-63c2-40c1-aaa7-4caa28286b30"
+  }
 }
