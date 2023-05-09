@@ -1,16 +1,17 @@
 <p>posts works!</p>
 
-<div *ngIf="!relatedPost">
-  <div *ngFor="let post of posts">
-    {{post.body}} <br>
-    {{post.title}} <br>
-    {{post.userid}} <br>
-    {{post.id}} <br>
-
-    <br>
+<div *ngFor="let post of posts">
+  <!-- {{post.body}} <br> -->
+  <!-- {{post.title}} <br> -->
+  [userid] {{post.userId}} <br>
+  <!-- [id]{{post.id}}<br> -->
+  <a [routerLink]="['/posts/'+post.id]">{{post.title}}</a><br>
+  {{post.body}} <br>
+  <br>
+  <br>
+  <div *ngFor="let comment of comments">
+    {{comment.name}} <br>
+    {{comment.email}} <br>
+    {{comment.body}} <br><br>
   </div>
-</div>
-
-<div *ngIf="relatedPost">
-  coming-soon
 </div>

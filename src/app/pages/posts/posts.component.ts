@@ -12,6 +12,7 @@ export class PostsComponent implements OnInit {
 
   posts : any;
   relatedPost : boolean = false;
+  comments: any;
 
   constructor(
     private api : ApiService,
@@ -21,16 +22,40 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
 
     const params = this.route.snapshot.params['id'];
-    if(params!=undefined){ this.relatedPost = true; }
-    console.log(params);
-
-    this.fetchData();
+    this.fetchData(params);
   }
 
-  async fetchData() {
-    // const res : any = await this.api.get(this.api.sitelink + 'posts').toPromise(); // no longer use on latest angular version rxjsv7
-    const res: any = await lastValueFrom(this.api.get(this.api.sitelink + 'posts'));
-    this.posts = res;
+  async fetchData( id: any) {
+    console.log(id)
+
+    var apiUrl = this.api.sitelink + 'posts';
+
+    if(id!=undefined){
+      apiUrl = this.api.sitelink + 'posts/' + id;
+      console.log(apiUrl);
+
+      this.getComments(id);
+    }
+
+
+    const res: any = await lastValueFrom(this.api.get(apiUrl));
+    console.log(Array.isArray(res));
+    if (Array.isArray(res)) { this.posts = res; }
+    else { this.posts = [res]; }
     console.log(this.posts);
   }
+
+  async getComments(cid:any){
+    let commentApi = this.api.sitelink + 'comments?postId=' + cid;
+    const comments: any = await lastValueFrom(this.api.get(commentApi));
+    this.comments = comments;
+    console.log(comments);
+  }
 }
+
+
+
+/*
+Side Note Update
+// const res : any = await this.api.get(this.api.sitelink + 'posts').toPromise(); // no longer use on latest angular version rxjsv7
+*/
