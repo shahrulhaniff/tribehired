@@ -2,13 +2,17 @@
 
 <div *ngFor="let post of posts">
   [userid] {{post.userId}} <br>
-  <a [routerLink]="['/posts/'+post.id]">{{post.title}}</a><br>
+  <span *ngIf="secondPage">{{post.title}}
+    <a  [routerLink]="['/posts/']">Back</a>
+  </span>
+  <a *ngIf="!secondPage" [routerLink]="['/posts/'+post.id]">{{post.title}}</a><br>
   {{post.body}} <br>
   <br>
   <br>
 
 
-  <!-- search -->
+    <div *ngIf="secondPage">
+      <!-- search -->
     <div>
   <div *ngFor="let option of options">
     <input type="radio" id="{{option.id}}" [value]="option.value"  [(ngModel)]="selectedOption" [checked]="option.value === selectedOption">
@@ -19,12 +23,15 @@
             <i class="fa fa-search"></i>
         </button>
     </div>
+    <hr>
 
 
   <br>
   <div *ngFor="let comment of comments">
     {{comment.name}} <br>
     {{comment.email}} <br>
-    {{comment.body}} <br><br>
+    {{comment.body}} <br><hr>
   </div>
+</div>
+
 </div>

@@ -25,6 +25,7 @@ export class PostsComponent implements OnInit {
   comments: any;
   searchText: any = '';
   selectedOption: string = 'name';
+  secondPage: boolean = false;
 
   constructor(
     private api : ApiService,
@@ -42,6 +43,7 @@ export class PostsComponent implements OnInit {
   async fetchData( id: any) {
     var apiUrl = this.api.sitelink + 'posts';
     if(id!=undefined){
+      this.secondPage = true;
       apiUrl = this.api.sitelink + 'posts/' + id;
       this.getComments(id);
     }
