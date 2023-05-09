@@ -27,6 +27,8 @@ export class PostsComponent implements OnInit {
   selectedOption: string = 'name';
   secondPage: boolean = false;
 
+  debugparam : any;
+
   constructor(
     private api : ApiService,
     private route: ActivatedRoute,
@@ -34,6 +36,8 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
     const params = this.route.snapshot.params['id'];
+    // debugger
+    this.debugparam = params;
     this.fetchData(params);
 
     console.log(this.options);
@@ -66,6 +70,15 @@ export class PostsComponent implements OnInit {
   }
 
   async search(searchKey:any) {
+
+
+    // debugger
+    // console.log(this.debugparam);
+    // console.table(this.comments);
+    // this.getComments(this.debugparam);
+    let commentApi = this.api.sitelink + 'comments?postId=' + this.debugparam;
+    this.comments = await lastValueFrom(this.api.get(commentApi));
+
 
     // if(this.selectedOption=='name') { this.comments =  this.comments.filter((item: { name: any; }) => item.name == searchKey ); }
     if(this.selectedOption=='name') { this.comments = await this.comments.filter((item: { name: any; }) => item.name.includes(searchKey) ); }
