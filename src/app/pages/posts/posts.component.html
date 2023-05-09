@@ -1,4 +1,5 @@
 <p>tribe<b>hired</b> test!</p>
+<hr>
 
 <div *ngFor="let post of posts">
   [userid] {{post.userId}} <br>
@@ -7,7 +8,7 @@
   </span>
   <a *ngIf="!secondPage" [routerLink]="['/posts/'+post.id]">{{post.title}}</a><br>
   {{post.body}} <br>
-  <br>
+  <hr>
   <br>
 
 
