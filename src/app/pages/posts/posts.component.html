@@ -7,9 +7,14 @@
   <br>
   <br>
 
+
   <!-- search -->
-    <div class="search-container">
-        <input type="text" (keyup.enter)="search(searchText)" [(ngModel)]="searchText" class="form-control " placeholder="Search By Invoice">
+    <div>
+  <div *ngFor="let option of options">
+    <input type="radio" id="{{option.id}}" [value]="option.value"  [(ngModel)]="selectedOption" [checked]="option.value === selectedOption">
+    <label for="{{option.id}}">Search by {{option.value}}</label>
+  </div>
+        <input type="text" (keyup.enter)="search(searchText)" [(ngModel)]="searchText" class="form-control " placeholder="Search by {{selectedOption}}">
         <button (click)="search(searchText)" type="button">
             <i class="fa fa-search"></i>
         </button>
