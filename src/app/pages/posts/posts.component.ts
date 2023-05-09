@@ -12,6 +12,7 @@ export class PostsComponent implements OnInit {
   posts : any;
   relatedPost : boolean = false;
   comments: any;
+  searchText: any = '';
 
   constructor(
     private api : ApiService,
@@ -40,5 +41,9 @@ export class PostsComponent implements OnInit {
     let commentApi = this.api.sitelink + 'comments?postId=' + id;
     this.comments = await lastValueFrom(this.api.get(commentApi));
     console.table(this.comments);
+  }
+
+  search(searchKey:any) {
+    console.log(searchKey);
   }
 }

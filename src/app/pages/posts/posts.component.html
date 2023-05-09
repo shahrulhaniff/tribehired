@@ -1,13 +1,21 @@
 <p>posts works!</p>
 
 <div *ngFor="let post of posts">
-  <!-- {{post.body}} <br> -->
-  <!-- {{post.title}} <br> -->
   [userid] {{post.userId}} <br>
-  <!-- [id]{{post.id}}<br> -->
   <a [routerLink]="['/posts/'+post.id]">{{post.title}}</a><br>
   {{post.body}} <br>
   <br>
+  <br>
+
+  <!-- search -->
+    <div class="search-container">
+        <input type="text" (keyup.enter)="search(searchText)" [(ngModel)]="searchText" class="form-control " placeholder="Search By Invoice">
+        <button (click)="search(searchText)" type="button">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+
+
   <br>
   <div *ngFor="let comment of comments">
     {{comment.name}} <br>
